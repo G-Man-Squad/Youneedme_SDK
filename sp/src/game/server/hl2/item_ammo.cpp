@@ -319,14 +319,14 @@ public:
 		BaseClass::Spawn( );
 	}
 
-	bool MyTouch( CBasePlayer *pPlayer )
+	bool MyTouch(CBasePlayer *pPlayer)
 	{
-		if (ITEM_GiveAmmo( pPlayer, SIZE_AMMO_357, "357"))
+		if (ITEM_GiveAmmo(pPlayer, SIZE_AMMO_357, "357"))
 		{
-			if ( g_pGameRules->ItemShouldRespawn( this ) == GR_ITEM_RESPAWN_NO )
+			if (g_pGameRules->ItemShouldRespawn(this) == GR_ITEM_RESPAWN_NO)
 			{
-				UTIL_Remove(this);	
-			}	
+				UTIL_Remove(this);
+			}
 			return true;
 		}
 		return false;
@@ -354,13 +354,13 @@ public:
 		BaseClass::Spawn( );
 	}
 
-	bool MyTouch( CBasePlayer *pPlayer )
+	bool MyTouch(CBasePlayer *pPlayer)
 	{
-		if (ITEM_GiveAmmo( pPlayer, SIZE_AMMO_357_LARGE, "357"))
+		if (ITEM_GiveAmmo(pPlayer, SIZE_AMMO_357_LARGE, "357"))
 		{
-			if ( g_pGameRules->ItemShouldRespawn( this ) == GR_ITEM_RESPAWN_NO )
+			if (g_pGameRules->ItemShouldRespawn(this) == GR_ITEM_RESPAWN_NO)
 			{
-				UTIL_Remove(this);	
+				UTIL_Remove(this);
 			}
 			return true;
 		}
@@ -647,6 +647,75 @@ public:
 };
 
 LINK_ENTITY_TO_CLASS( item_ammo_ar2_altfire, CItem_AR2AltFireRound );
+
+// ========================================================================
+//	>> CItem_Box440Rounds
+// ========================================================================
+class CItem_Box440Rounds : public CItem
+{
+public:
+	DECLARE_CLASS(CItem_Box440Rounds, CItem);
+
+	void Precache(void)
+	{
+		PrecacheModel("models/items/357ammo.mdl");
+	}
+	void Spawn(void)
+	{
+		Precache();
+		SetModel("models/items/357ammo.mdl");
+		BaseClass::Spawn();
+	}
+
+	bool MyTouch(CBasePlayer *pPlayer)
+	{
+		if (ITEM_GiveAmmo(pPlayer, SIZE_AMMO_440, "440"))
+		{
+			if (g_pGameRules->ItemShouldRespawn(this) == GR_ITEM_RESPAWN_NO)
+			{
+				UTIL_Remove(this);
+			}
+			return true;
+		}
+		return false;
+	}
+};
+LINK_ENTITY_TO_CLASS(item_ammo_440, CItem_Box440Rounds);
+
+
+// ========================================================================
+//	>> CItem_LargeBox440Rounds
+// ========================================================================
+class CItem_LargeBox440Rounds : public CItem
+{
+public:
+	DECLARE_CLASS(CItem_LargeBox440Rounds, CItem);
+
+	void Precache(void)
+	{
+		PrecacheModel("models/items/357ammobox.mdl");
+	}
+	void Spawn(void)
+	{
+		Precache();
+		SetModel("models/items/357ammobox.mdl");
+		BaseClass::Spawn();
+	}
+
+	bool MyTouch(CBasePlayer *pPlayer)
+	{
+		if (ITEM_GiveAmmo(pPlayer, SIZE_AMMO_440_LARGE, "440"))
+		{
+			if (g_pGameRules->ItemShouldRespawn(this) == GR_ITEM_RESPAWN_NO)
+			{
+				UTIL_Remove(this);
+			}
+			return true;
+		}
+		return false;
+	}
+};
+LINK_ENTITY_TO_CLASS(item_ammo_440_large, CItem_LargeBox440Rounds);
 
 // ==================================================================
 // Ammo crate which will supply infinite ammo of the specified type
