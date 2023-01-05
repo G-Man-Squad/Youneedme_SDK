@@ -462,7 +462,6 @@ void CBaseViewModel::CalcViewModelView( CBasePlayer *owner, const Vector& eyePos
 		g_ClientVirtualReality.OverrideViewModelTransform( vmorigin, vmangles, pWeapon && pWeapon->ShouldUseLargeViewModelVROverride() );
 	}
 
-#ifdef MAPBASE
 	// Flip the view if we should be flipping
 	if (ShouldFlipViewModel())
 	{
@@ -475,7 +474,6 @@ void CBaseViewModel::CalcViewModelView( CBasePlayer *owner, const Vector& eyePos
 		vmangles.y = (eyeAngles.y + angAnglesDiff.y);
 		vmangles.z = (eyeAngles.z + angAnglesDiff.z);
 	}
-#endif
 
 	SetLocalOrigin( vmorigin );
 	SetLocalAngles( vmangles );

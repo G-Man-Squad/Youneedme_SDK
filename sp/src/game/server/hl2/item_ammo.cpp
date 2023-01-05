@@ -345,12 +345,12 @@ public:
 
 	void Precache( void )
 	{
-		PrecacheModel ("models/items/357ammobox.mdl");
+		PrecacheModel("models/items/357ammo.mdl");
 	}
 	void Spawn( void )
 	{ 
 		Precache( );
-		SetModel( "models/items/357ammobox.mdl");
+		SetModel("models/items/357ammo.mdl");
 		BaseClass::Spawn( );
 	}
 
@@ -664,6 +664,7 @@ public:
 	{
 		Precache();
 		SetModel("models/items/357ammo.mdl");
+		m_nSkin = 1;
 		BaseClass::Spawn();
 	}
 
@@ -693,12 +694,13 @@ public:
 
 	void Precache(void)
 	{
-		PrecacheModel("models/items/357ammobox.mdl");
+		PrecacheModel("models/items/357ammo.mdl");
 	}
 	void Spawn(void)
 	{
 		Precache();
-		SetModel("models/items/357ammobox.mdl");
+		SetModel("models/items/357ammo.mdl");
+		m_nSkin = 1;
 		BaseClass::Spawn();
 	}
 

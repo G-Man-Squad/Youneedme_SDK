@@ -245,6 +245,7 @@ CWeaponDeagle::CWeaponDeagle( void )
 {
 	m_bReloadsSingly	= false;
 	m_bFiresUnderwater	= false;
+	m_bFlipViewModel	= true;
 
 #ifdef MAPBASE
 	m_fMinRange1		= 24;
@@ -267,8 +268,8 @@ void CWeaponDeagle::Operator_HandleAnimEvent( animevent_t *pEvent, CBaseCombatCh
 			{
 				CEffectData data;
 
-				// Emit six spent shells
-				for ( int i = 0; i < 6; i++ )
+				// Emit seven spent shells
+				for ( int i = 0; i < 7; i++ )
 				{
 					data.m_vOrigin = pOwner->WorldSpaceCenter() + RandomVector( -4, 4 );
 					data.m_vAngles = QAngle( 90, random->RandomInt( 0, 360 ), 0 );

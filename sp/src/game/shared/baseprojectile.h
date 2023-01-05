@@ -1,9 +1,8 @@
-//========= Copyright Valve Corporation, All rights reserved. ============//
+//====== Copyright  1996-2005, Valve Corporation, All rights reserved. =======
 //
 // Purpose: 
 //
-// $NoKeywords: $
-//=============================================================================//
+//=============================================================================
 
 #ifndef BASEPROJECTILE_H
 #define BASEPROJECTILE_H
@@ -11,43 +10,52 @@
 #pragma once
 #endif
 
-#include "cbase.h"
-
-#ifdef GAME_DLL
-#include "baseanimating.h"
-#else
-#include "c_baseanimating.h"
-#endif
-
-#ifdef CLIENT_DLL
-#define CBaseProjectile C_BaseProjectile
-#endif // CLIENT_DLL
+// Creation.
+struct baseprojectilecreate_t
+{
+	Vector vecOrigin;
+	Vector vecVelocity;
+	CBaseEntity *pOwner;
+	string_t iszModel;
+	float flDamage;
+	int iDamageType;
+	float flDamageScale;
+};
 
 //=============================================================================
 //
-// Base Projectile.
+// Generic projectile
 //
-//=============================================================================
 class CBaseProjectile : public CBaseAnimating
 {
+	DECLARE_CLASS(CBaseProjectile, CBaseAnimating);
 public:
-	DECLARE_CLASS( CBaseProjectile, CBaseAnimating );
-	DECLARE_NETWORKCLASS();
+	DECLARE_DATADESC();
 
-	CBaseProjectile();
+	void	Spawn(void);
+	void	Precache(void);
 
-#ifdef GAME_DLL
-	virtual int GetDestroyableHitCount( void ) const { return m_iDestroyableHitCount; }
-	void IncrementDestroyableHitCount( void ) { ++m_iDestroyableHitCount; }
-#endif // GAME_DLL
+	static CBaseProjectile *Create(baseprojectilecreate_t &pCreate);
 
-	virtual bool IsDestroyable( void ) { return false; }
-	virtual void Destroy( bool bBlinkOut = true, bool bBreakRocket = false ) {}
+	void			SetDamage(float flDamage) { m_flDamage = flDamage; }
+	void			SetDamageScale(float &flScale) { m_flDamageScale = flScale; }
+	void			SetDamageType(int iType) { m_iDamageType = iType; }
 
 protected:
-#ifdef GAME_DLL
-	int m_iDestroyableHitCount;
-#endif // GAME_DLL
+
+	// Damage
+	virtual float	GetDamage() { return m_flDamage; }
+	virtual float	GetDamageScale(void) { return m_flDamageScale; }
+	virtual int		GetDamageType(void) { return m_iDamageType; }
+
+	unsigned int	PhysicsSolidMaskForEntity(void) const;
+
+	virtual void	ProjectileTouch(CBaseEntity *pOther);
+	void			FlyThink(void);
+
+	float			m_flDamage;
+	int				m_iDamageType;
+	float			m_flDamageScale;
 };
 
 #endif // BASEPROJECTILE_H

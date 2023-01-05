@@ -36,9 +36,7 @@
 	ConVar cl_righthand( "cl_righthand", "1", FCVAR_ARCHIVE, "Use right-handed view models." );
 #endif
 
-#ifdef TF_CLIENT_DLL
 	ConVar cl_flipviewmodels( "cl_flipviewmodels", "0", FCVAR_USERINFO | FCVAR_ARCHIVE | FCVAR_NOT_CONNECTED, "Flip view models." );
-#endif
 
 void PostToolMessage( HTOOLHANDLE hEntity, KeyValues *msg );
 
@@ -194,25 +192,20 @@ bool C_BaseViewModel::Interpolate( float currentTime )
 
 bool C_BaseViewModel::ShouldFlipViewModel()
 {
-#if defined(CSTRIKE_DLL) || defined (MAPBASE)
-	// If cl_righthand is set, then we want them all right-handed.
-	CBaseCombatWeapon *pWeapon = m_hWeapon.Get();
-	if ( pWeapon )
-	{
-		const FileWeaponInfo_t *pInfo = &pWeapon->GetWpnData();
-		return pInfo->m_bAllowFlipping && pInfo->m_bBuiltRightHanded != cl_righthand.GetBool();
-	}
-#endif
+	// If cl_righthand is set, then we want them all right-handed. Gaijin: Maybe this Team Fortress Code below will be more Weapon dependent
+//	CBaseCombatWeapon *pWeapon = m_hWeapon.Get();
+//	if ( pWeapon )
+//	{
+//		const FileWeaponInfo_t *pInfo = &pWeapon->GetWpnData();
+//		return pInfo->m_bAllowFlipping && pInfo->m_bBuiltRightHanded != cl_righthand.GetBool();
+//	}
 
-#ifdef TF_CLIENT_DLL
 	CBaseCombatWeapon *pWeapon = m_hWeapon.Get();
 	if ( pWeapon )
 	{
 		return pWeapon->m_bFlipViewModel != cl_flipviewmodels.GetBool();
 	}
-#endif
-
-	return false;
+	return true;
 }
 
 
