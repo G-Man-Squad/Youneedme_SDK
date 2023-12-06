@@ -6389,7 +6389,7 @@ static void CreateJeep( CBasePlayer *pPlayer )
 	AngleVectors( pPlayer->EyeAngles(), &vecForward );
 	//Tony; in sp sdk, we have prop_vehicle_hl2buggy; because episode 2 modified the jeep code to turn it into the jalopy instead of the regular buggy
 #if defined ( HL2_EPISODIC )
-	CBaseEntity *pJeep = (CBaseEntity *)CreateEntityByName( "prop_vehicle_jeep_old" );
+	CBaseEntity *pJeep = (CBaseEntity *)CreateEntityByName( "prop_vehicle_hl2buggy" );
 #else
 	CBaseEntity *pJeep = (CBaseEntity *)CreateEntityByName( "prop_vehicle_jeep" );
 #endif
@@ -6402,7 +6402,7 @@ static void CreateJeep( CBasePlayer *pPlayer )
 		pJeep->KeyValue( "model", "models/buggy.mdl" );
 		pJeep->KeyValue( "solid", "6" );
 #if defined ( HL2_EPISODIC )
-		pJeep->KeyValue( "targetname", "jeep" );
+		pJeep->KeyValue( "targetname", "hl2buggy" );
 #else
 		pJeep->KeyValue( "targetname", "jeep" );
 #endif
@@ -6525,30 +6525,25 @@ void CBasePlayer::CheatImpulseCommands( int iImpulse )
 		GiveAmmo( 3,	"smg1_grenade");
 		GiveAmmo( 3,	"rpg_round");
 		GiveAmmo( 5,	"grenade");
-//		GiveAmmo( 32,	"357" );
+		GiveAmmo( 32,	"357" );
 		GiveAmmo( 16,	"XBowBolt" );
 #ifdef HL2_EPISODIC
 		GiveAmmo( 5,	"Hopwire" );
 #endif		
 		GiveNamedItem( "weapon_smg1" );
 		GiveNamedItem( "weapon_frag" );
-//		GiveNamedItem( "weapon_crowbar" );
+		GiveNamedItem( "weapon_crowbar" );
 		GiveNamedItem( "weapon_pistol" );
 		GiveNamedItem( "weapon_ar2" );
 		GiveNamedItem( "weapon_shotgun" );
 		GiveNamedItem( "weapon_physcannon" );
 		GiveNamedItem( "weapon_bugbait" );
 		GiveNamedItem( "weapon_rpg" );
-//		GiveNamedItem( "weapon_357" );
+		GiveNamedItem( "weapon_357" );
 		GiveNamedItem( "weapon_crossbow" );
 #ifdef HL2_EPISODIC
 		// GiveNamedItem( "weapon_magnade" );
 #endif
-
-		GiveAmmo( 32,	"440" );
-		GiveNamedItem("weapon_suitcase");
-		GiveNamedItem("weapon_deagle");
-
 		if ( GetHealth() < 100 )
 		{
 			TakeHealth( 25, DMG_GENERIC );

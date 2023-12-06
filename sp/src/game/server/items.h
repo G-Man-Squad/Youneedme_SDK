@@ -32,8 +32,6 @@
 #define SIZE_AMMO_BUCKSHOT			20
 #define SIZE_AMMO_357				6
 #define SIZE_AMMO_357_LARGE			20
-#define SIZE_AMMO_440				7
-#define SIZE_AMMO_440_LARGE			21
 #define SIZE_AMMO_CROSSBOW			6
 #define	SIZE_AMMO_AR2_ALTFIRE		1
 

@@ -1337,8 +1337,8 @@ void CPropJeep::DriveVehicle( float flFrameTime, CUserCmd *ucmd, int iButtonsDow
 {
 	int iButtons = ucmd->buttons;
 
-
-	if ( ucmd->impulse == 100 )
+	//Adrian: No headlights on Superfly.
+/*	if ( ucmd->impulse == 100 )
 	{
 		if (HeadlightIsOn())
 		{
@@ -1348,7 +1348,7 @@ void CPropJeep::DriveVehicle( float flFrameTime, CUserCmd *ucmd, int iButtonsDow
 		{
 			HeadlightTurnOn();
 		}
-	}
+	}*/
 		
 	// Only handle the cannon if the vehicle has one
 	if ( m_bHasGun )

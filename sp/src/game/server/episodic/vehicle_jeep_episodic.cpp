@@ -1327,7 +1327,12 @@ static void KillBlockingEnemyNPCs( CBasePlayer *pPlayer, CBaseEntity *pVehicleEn
 }
 
 void CPropJeepEpisodic::DriveVehicle( float flFrameTime, CUserCmd *ucmd, int iButtonsDown, int iButtonsReleased )
-{	
+{
+	/* The car headlight hurts perf, there's no timer to turn it off automatically,
+	   and we haven't built any gameplay around it.
+
+	   Furthermore, I don't think I've ever seen a playtester turn it on.
+	
 	if ( ucmd->impulse == 100 )
 	{
 		if (HeadlightIsOn())
@@ -1338,7 +1343,7 @@ void CPropJeepEpisodic::DriveVehicle( float flFrameTime, CUserCmd *ucmd, int iBu
 		{
 			HeadlightTurnOn();
 		}
-	}
+	}*/
 	
 	if ( ucmd->forwardmove != 0.0f )
 	{
